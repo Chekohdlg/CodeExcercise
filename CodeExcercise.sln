@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeExercise_Model", "CodeE
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeExercise.DataAcccess", "CodeExercise.DataAcccess\CodeExercise.DataAcccess.csproj", "{97A02D58-A2E4-4B4F-AE4B-78752F579590}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeExercise.Test", "CodeExercise.Test\CodeExercise.Test.csproj", "{5D183848-2DAA-45B1-B22E-22EC5B2A53D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeExercise.Test", "CodeExercise.Test\CodeExercise.Test.csproj", "{5D183848-2DAA-45B1-B22E-22EC5B2A53D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeExercise.Repository", "CodeExercise.Repository\CodeExercise.Repository.csproj", "{B2D520B6-00E8-4634-8556-5D0CEA20AA42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{5D183848-2DAA-45B1-B22E-22EC5B2A53D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D183848-2DAA-45B1-B22E-22EC5B2A53D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D183848-2DAA-45B1-B22E-22EC5B2A53D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2D520B6-00E8-4634-8556-5D0CEA20AA42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2D520B6-00E8-4634-8556-5D0CEA20AA42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2D520B6-00E8-4634-8556-5D0CEA20AA42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2D520B6-00E8-4634-8556-5D0CEA20AA42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

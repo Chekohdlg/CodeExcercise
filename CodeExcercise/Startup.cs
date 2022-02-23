@@ -1,4 +1,6 @@
 using CodeExercise.DataAcccess.Data;
+using CodeExercise.Repository;
+using CodeExercise_Model.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -33,6 +35,8 @@ namespace CodeExcercise
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")
                 ));
+
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositry<>));//inject
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

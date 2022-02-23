@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CodeExercise.DataAcccess\CodeExercise.DataAcccess.csproj" />
+    <ProjectReference Include="..\CodeExercise.Repository\CodeExercise.Repository.csproj" />
   </ItemGroup>
 
 </Project>

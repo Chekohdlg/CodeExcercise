@@ -1,4 +1,5 @@
 ﻿using CodeExercise.DataAcccess.Data;
+using CodeExercise_Model.Interfaces;
 using CodeExercise_Model.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,18 +15,21 @@ namespace CodeExcercise.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly ApplicationDbContext _db;
-        public ProductsController(ApplicationDbContext db)
+        private readonly IProduct productRepository;
+        //private readonly IMapper mapper;
+        public ProductsController(IProduct productRespoository)
         {
-            _db = db;
+            this.productRepository = productRespoository;
+            //this.mapper = mapper;
         }
+
         // GET: api/<ProductsController>
         [HttpGet]
         public async Task<ActionResult>  Get()
         {
             try
             {
-                return Ok(await _db.Products.ToListAsync());
+                return Ok(await productRepository.GetAllAsync());
             }
             catch (System.Exception ex)
             {
@@ -40,14 +44,14 @@ namespace CodeExcercise.Controllers
         {
             try
             {
-                if (id<=0)
+                if (id <= 0)
                 {
                     return BadRequest("The id must be grater than zero");
                 }
-                
-                var product = await _db.Products.FirstOrDefaultAsync(p => p.Id == id);
-                
-                if(product is null)
+
+                var product = await productRepository.GetAsync(id);
+
+                if (product is null)
                 {
                     return NotFound();
                 }
@@ -71,11 +75,9 @@ namespace CodeExcercise.Controllers
                     return BadRequest(ModelState);
                 }
 
-                _db.Products.Add(product);
-                await _db.SaveChangesAsync();
-
+                await productRepository.AddAsync(product);
+                
                 return CreatedAtAction(nameof(GetProduct), new { id = product.Id }, product);
-
             }
             catch (System.Exception ex)
             {
@@ -85,7 +87,7 @@ namespace CodeExcercise.Controllers
 
         // PUT api/<ProductsController>/5
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put([FromRoute]int id, [FromBody] Product product)
+        public async Task<ActionResult> Put([FromRoute] int id, [FromBody] Product product)
         {
             try
             {
@@ -94,9 +96,7 @@ namespace CodeExcercise.Controllers
                     return BadRequest(ModelState);
                 }
 
-                _db.Products.Update(product);
-
-                await _db.SaveChangesAsync();
+                await productRepository.UpdateAsync(product);
 
                 return Ok(product);
 
@@ -118,22 +118,16 @@ namespace CodeExcercise.Controllers
                     return BadRequest("The id must be grater than zero");
                 }
 
-                var product = await _db.Products.FirstOrDefaultAsync(p => p.Id == id);
-                if (product is null)
-                {
-                    return BadRequest();
-                }
-
-                _db.Products.Remove(product);
-                await _db.SaveChangesAsync();
-
-                return Ok(product);
-
+               await productRepository.DeleteAsync(id);
+            
+               return Ok();
             }
             catch (System.Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, ex);
             }
         }
+
+
     }
 }

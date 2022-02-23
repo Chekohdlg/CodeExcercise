@@ -37,6 +37,8 @@ namespace CodeExcercise
                 ));
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositry<>));//inject
+            services.AddScoped<IProduct, ProductRepository>();
+
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

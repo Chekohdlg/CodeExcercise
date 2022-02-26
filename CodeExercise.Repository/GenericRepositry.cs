@@ -10,13 +10,16 @@ namespace CodeExercise.Repository
     public class GenericRepositry<T> : IGenericRepository<T> where T : class
     {
         private readonly ApplicationDbContext _context;
+        private DbSet<T> table = null;
+
         public GenericRepositry(ApplicationDbContext dbContext)
         {
             _context = dbContext;
+            table = _context.Set<T>();
         }
         public async Task<T> AddAsync(T entity)
         {
-            await _context.AddAsync(entity);
+            await table.AddAsync(entity);
             _context.SaveChanges();
             return entity;
         }
@@ -24,7 +27,7 @@ namespace CodeExercise.Repository
         public async Task DeleteAsync(int id)
         {
             var entity = await GetAsync(id);
-            _context.Set<T>().Remove(entity);
+            table.Remove(entity);
             await _context.SaveChangesAsync();
 
         }
@@ -35,9 +38,9 @@ namespace CodeExercise.Repository
             return entity != null;
         }
 
-        public async Task<List<T>> GetAllAsync()
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
-            return await _context.Set<T>().ToListAsync();
+            return await table.ToListAsync();
         }
 
         public async Task<T> GetAsync(int? id)
@@ -47,12 +50,12 @@ namespace CodeExercise.Repository
                 return null;
             }
 
-            return await _context.Set<T>().FindAsync(id);
+            return await table.FindAsync(id);
         }
 
         public async Task UpdateAsync(T entity)
         {
-            _context.Update(entity);
+            table.Update(entity);
             await _context.SaveChangesAsync();
         }
     }

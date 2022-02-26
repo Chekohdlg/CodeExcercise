@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,11 +16,11 @@ namespace CodeExcercise.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly IProduct productRepository;
+        private readonly IGenericRepository<Product> productRepository;
         //private readonly IMapper mapper;
-        public ProductsController(IProduct productRespoository)
+        public ProductsController(IGenericRepository<Product>  productRespository)
         {
-            this.productRepository = productRespoository;
+            this.productRepository = productRespository;
             //this.mapper = mapper;
         }
 
@@ -30,6 +31,7 @@ namespace CodeExcercise.Controllers
             try
             {
                 return Ok(await productRepository.GetAllAsync());
+                                                 
             }
             catch (System.Exception ex)
             {
@@ -91,6 +93,10 @@ namespace CodeExcercise.Controllers
         {
             try
             {
+                if (id != product.Id)
+                {
+                    return BadRequest("The id and the product id is not the same");
+                }
                 if (!ModelState.IsValid)
                 {
                     return BadRequest(ModelState);

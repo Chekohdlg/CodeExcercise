@@ -24,12 +24,12 @@ namespace CodeExercise.Repository
             return entity;
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task<T> DeleteAsync(int id)
         {
             var entity = await GetAsync(id);
             table.Remove(entity);
             await _context.SaveChangesAsync();
-
+            return entity;
         }
 
         public async Task<bool> Exists(int id)
@@ -53,10 +53,11 @@ namespace CodeExercise.Repository
             return await table.FindAsync(id);
         }
 
-        public async Task UpdateAsync(T entity)
+        public async Task<T> UpdateAsync(T entity)
         {
             table.Update(entity);
             await _context.SaveChangesAsync();
+            return entity;
         }
     }
 }

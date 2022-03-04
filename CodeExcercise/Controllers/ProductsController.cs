@@ -62,6 +62,7 @@ namespace CodeExcercise.Controllers
             }
             catch (System.Exception ex)
             {
+                
                 return StatusCode(StatusCodes.Status500InternalServerError, ex);
             }
         }
@@ -124,9 +125,9 @@ namespace CodeExcercise.Controllers
                     return BadRequest("The id must be grater than zero");
                 }
 
-               await productRepository.DeleteAsync(id);
+               var productDeleted = await productRepository.DeleteAsync(id);
             
-               return Ok();
+               return Ok(productDeleted);
             }
             catch (System.Exception ex)
             {

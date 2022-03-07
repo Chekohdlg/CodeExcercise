@@ -1,5 +1,7 @@
 using CodeExercise.DataAcccess.Data;
 using CodeExercise.Repository;
+using CodeExercise.Services;
+using CodeExercise.Services.Interfaces;
 using CodeExercise_Model.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -37,7 +39,10 @@ namespace CodeExcercise
                 ));
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositry<>));//inject
+            services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IProduct, ProductRepository>();
+            
+            
 
 
             services.AddControllers();

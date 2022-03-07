@@ -12,5 +12,9 @@ namespace CodeExercise_Model.Models
         [Key]
         public int Category_Id { get; set; }
         public string Name { get; set; }
+
+        //Navigation Properties
+
+        public List<Product> Products { get; set; }
     }
 }

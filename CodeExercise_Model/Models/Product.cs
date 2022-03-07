@@ -27,6 +27,9 @@ namespace CodeExercise_Model.Models
 
         public string? ImageUrl { get; set; }
 
+        //Navigation Properties
+        public Category Category { get; set; }
+
 
     }
 }

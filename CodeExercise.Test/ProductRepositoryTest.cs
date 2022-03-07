@@ -24,25 +24,25 @@ namespace CodeExercise.Test
             service = new Mock<IGenericRepository<Product>>();
         }
 
-        [Fact]
-        public async Task GetAllAsync_ShouldReturnProductList_WhenThereAreProducts()
-        {
-            //arrange
-            //var products = GetSampleProducts();
-            service.Setup(x => x.GetAllAsync())
-                .ReturnsAsync(GetSampleProducts);
-            var controller = new ProductsController(service.Object);
+        //[Fact]
+        //public async Task GetAllAsync_ShouldReturnProductList_WhenThereAreProducts()
+        //{
+        //    //arrange
+        //    //var products = GetSampleProducts();
+        //    service.Setup(x => x.GetAllAsync())
+        //        .ReturnsAsync(GetSampleProducts);
+        //    var controller = new ProductsController(service.Object);
 
-            //act
-            ActionResult<Product> actionResult = await controller.Get();
-            var result = actionResult.Result as OkObjectResult;
-            var actual = result.Value as IEnumerable<Product>;
+        //    //act
+        //    ActionResult<Product> actionResult = await controller.Get();
+        //    var result = actionResult.Result as OkObjectResult;
+        //    var actual = result.Value as IEnumerable<Product>;
 
-            //assert
-            Assert.IsType<OkObjectResult>(result);
-            Assert.Equal(GetSampleProducts().Count(), actual.Count());
+        //    //assert
+        //    Assert.IsType<OkObjectResult>(result);
+        //    Assert.Equal(GetSampleProducts().Count(), actual.Count());
 
-        }
+        //}
 
 
         [InlineData(1)]

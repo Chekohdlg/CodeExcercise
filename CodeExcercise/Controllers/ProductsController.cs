@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
+using CodeExercise.Services.Interfaces;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,26 +18,34 @@ namespace CodeExcercise.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly IGenericRepository<Product> productRepository;
+        //private readonly IProductService _productService;
         //private readonly IMapper mapper;
-        public ProductsController(IGenericRepository<Product>  productRespository)
+        public ProductsController(
+            IGenericRepository<Product>  productRespository
+           /* IProductService productService*/)
         {
-            this.productRepository = productRespository;
+            productRepository = productRespository;
+            //_productService = productService;
             //this.mapper = mapper;
         }
 
         // GET: api/<ProductsController>
         [HttpGet]
-        public async Task<ActionResult>  Get()
+        public async Task<ActionResult>  Get([FromServices] IProductService _productService)
         {
-            try
-            {
-                return Ok(await productRepository.GetAllAsync());
-                                                 
-            }
-            catch (System.Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex);
-            }
+            return Ok(await _productService.GetProducts());
+
+            
+            
+           
+            //try
+            //{
+            //    return Ok(await productRepository.GetAllAsync());
+            //}
+            //catch (System.Exception ex)
+            //{
+            //    return StatusCode(StatusCodes.Status500InternalServerError, ex);
+            //}
            
         }
 

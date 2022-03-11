@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CodeExercise_Model.Interfaces
 {
-    public interface IGenericRepository<T> where T : class
+    public interface IGenericService<T> where T : class
     {
         Task<T> GetAsync(int? id);
         Task<IEnumerable<T>> GetAllAsync();

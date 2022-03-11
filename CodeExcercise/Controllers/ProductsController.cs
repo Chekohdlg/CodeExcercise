@@ -17,36 +17,23 @@ namespace CodeExcercise.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly IGenericRepository<Product> productRepository;
-        //private readonly IProductService _productService;
+        private readonly IGenericService<Product> productRepository;
+       
         //private readonly IMapper mapper;
         public ProductsController(
-            IGenericRepository<Product>  productRespository
-           /* IProductService productService*/)
+            IGenericService<Product>  productRespository       
+            )
         {
             productRepository = productRespository;
-            //_productService = productService;
+           
             //this.mapper = mapper;
         }
 
         // GET: api/<ProductsController>
         [HttpGet]
-        public async Task<ActionResult>  Get([FromServices] IProductService _productService)
+        public async Task<ActionResult> Get()
         {
-            return Ok(await _productService.GetProducts());
-
-            
-            
-           
-            //try
-            //{
-            //    return Ok(await productRepository.GetAllAsync());
-            //}
-            //catch (System.Exception ex)
-            //{
-            //    return StatusCode(StatusCodes.Status500InternalServerError, ex);
-            //}
-           
+            return Ok(await productRepository.GetAllAsync());
         }
 
         // GET api/<ProductsController>/5

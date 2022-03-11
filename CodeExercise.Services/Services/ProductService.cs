@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CodeExercise.Services
 {
-    public class ProductService : IProductService
+    public class ProductService //: IProductService
     {
         private readonly ApplicationDbContext _context;
         public ProductService(ApplicationDbContext context)

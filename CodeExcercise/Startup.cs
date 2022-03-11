@@ -3,6 +3,7 @@ using CodeExercise.Repository;
 using CodeExercise.Services;
 using CodeExercise.Services.Interfaces;
 using CodeExercise_Model.Interfaces;
+using CodeExercise_Model.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -38,11 +39,10 @@ namespace CodeExcercise
                     Configuration.GetConnectionString("DefaultConnection")
                 ));
 
-            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositry<>));//inject
-            services.AddScoped<IProductService, ProductService>();
-            services.AddScoped<IProduct, ProductRepository>();
-            
-            
+            services.AddScoped(typeof(IGenericService<>), typeof(GenericService<>));//inject
+            //services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IGenericService<Product>, GenericService<Product>>();
+       
 
 
             services.AddControllers();

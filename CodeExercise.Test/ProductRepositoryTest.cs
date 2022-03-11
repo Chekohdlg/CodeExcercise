@@ -18,10 +18,10 @@ namespace CodeExercise.Test
 
         
 
-        private readonly Mock<IGenericRepository<Product>> service;
+        private readonly Mock<IGenericService<Product>> service;
         public ProductRepositoryTest()
         {
-            service = new Mock<IGenericRepository<Product>>();
+            service = new Mock<IGenericService<Product>>();
         }
 
         //[Fact]

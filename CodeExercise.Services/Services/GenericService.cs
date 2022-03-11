@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace CodeExercise.Repository
 {
-    public class GenericRepositry<T> : IGenericRepository<T> where T : class
+    public class GenericService<T> : IGenericService<T> where T : class
     {
         private readonly ApplicationDbContext _context;
         private DbSet<T> table = null;
 
-        public GenericRepositry(ApplicationDbContext dbContext)
+        public GenericService(ApplicationDbContext dbContext)
         {
             _context = dbContext;
             table = _context.Set<T>();

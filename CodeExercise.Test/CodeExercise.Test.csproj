@@ -23,7 +23,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CodeExcercise\CodeExcercise.csproj" />
-    <ProjectReference Include="..\CodeExercise.Repository\CodeExercise.Repository.csproj" />
   </ItemGroup>
 
 </Project>
